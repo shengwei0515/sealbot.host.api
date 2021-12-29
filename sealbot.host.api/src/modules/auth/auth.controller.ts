@@ -1,11 +1,13 @@
-import { Controller, Get, Post, Request, Response, Param, Next, HttpStatus, Body, HttpException } from "@nestjs/common";
+import { Controller, Get, Post, Request, Response, Param, Next, HttpStatus, Body, HttpException, UseGuards } from "@nestjs/common";
 import { AuthParameter } from "./auth.parameter";
 import { AuthService } from "./auth.services";
 import { AuthParameterValidationPipe } from "./auth.validation.pipe";
 import { ApiTags } from "@nestjs/swagger";
+import { AuthGuard } from "../core/guards/auth.guard";
 
 @ApiTags('auth')
 @Controller('/api/auth')
+@UseGuards(new AuthGuard)
 export class AuthController {
 
     constructor(
