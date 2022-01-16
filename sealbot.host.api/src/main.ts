@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder} from '@nestjs/swagger';
+import { ConfigService } from '@nestjs/config'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -13,6 +14,14 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, builder);
   SwaggerModule.setup('/', app, document);
+
+  const configService = app.get<ConfigService>(ConfigService);
+  const corsAllowList = JSON.parse(configService.get('Cors_Allow_List'));
+
+  app.enableCors({
+    origin: corsAllowList,
+    credentials: false
+  });
 
   await app.listen(3000);
 }
