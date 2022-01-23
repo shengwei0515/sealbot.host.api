@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { UserModule } from './domain/user/user.module';
 import { TwitchLoginModule } from './domain/login/twitch-login/twitch-login.module';
 
 @Module({
@@ -8,6 +9,7 @@ import { TwitchLoginModule } from './domain/login/twitch-login/twitch-login.modu
       envFilePath: ['.development.env', '.env'],
       isGlobal: true
     }),
+    UserModule,
     TwitchLoginModule
   ],
   controllers: [],
