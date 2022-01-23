@@ -4,7 +4,7 @@ import { TwitchRepository } from '../../../dal/twitch/twitch.repositroy'
 import { GetAuthorizePageUrlViewModel, GetTokenParameter, GetTokenViewModel } from "./twitch-login.model";
 import { Observable, map } from "rxjs";
 import * as twitch from '../../../dal/twitch/twitch.content'
-import { randomString } from 'src/core/Urils/randomString';
+import { randomString } from 'src/core/utils/randomString';
 
 
 @Injectable()
