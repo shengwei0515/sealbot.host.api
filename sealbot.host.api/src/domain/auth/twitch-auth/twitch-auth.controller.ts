@@ -1,14 +1,14 @@
 import { ApiTags, ApiResponse} from '@nestjs/swagger';
 import { Controller, Get, HttpStatus, Response, Query, Post, Body} from '@nestjs/common';
-import { TwitchLoginService } from './twitch-login.service';
-import { GetAuthorizePageUrlViewModel, GetTokenParameter, GetTokenViewModel, RefreshTokenParameter } from './twitch-login.model';
+import { TwitchAuthService } from './twitch-auth.service';
+import { GetAuthorizePageUrlViewModel, GetTokenParameter, GetTokenViewModel, RefreshTokenParameter } from './twitch-auth.model';
 
-@ApiTags('twitch-login')
-@Controller('/api/twitch-login')
-export class TwitchLoginController {
+@ApiTags('twitch-auth')
+@Controller('/api/twitch-auth')
+export class TwitchAuthController {
     
     constructor(
-        private readonly loginService: TwitchLoginService
+        private readonly loginService: TwitchAuthService
     ){}
     
 

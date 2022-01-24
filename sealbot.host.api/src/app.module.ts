@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './domain/user/user.module';
-import { TwitchLoginModule } from './domain/login/twitch-login/twitch-login.module';
+import { TwitchAuthModule } from './domain/auth/twitch-auth/twitch-auth.module';
 
 @Module({
   imports: [
@@ -10,7 +10,7 @@ import { TwitchLoginModule } from './domain/login/twitch-login/twitch-login.modu
       isGlobal: true
     }),
     UserModule,
-    TwitchLoginModule
+    TwitchAuthModule
   ],
   controllers: [],
   providers: [ConfigService],

@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from '@nestjs/config';
 import { TwitchRepository } from '../../../dal/twitch/twitch.repositroy'
-import { GetAuthorizePageUrlViewModel, GetTokenParameter, GetTokenViewModel, RefreshTokenParameter } from "./twitch-login.model";
+import { GetAuthorizePageUrlViewModel, GetTokenParameter, GetTokenViewModel, RefreshTokenParameter } from "./twitch-auth.model";
 import { Observable, map } from "rxjs";
 import * as twitch from '../../../dal/twitch/twitch.content'
 import { randomString } from 'src/core/utils/randomString';
@@ -9,7 +9,7 @@ import { config } from "process";
 
 
 @Injectable()
-export class TwitchLoginService {
+export class TwitchAuthService {
     
     constructor(
         private readonly twitchRepo: TwitchRepository,

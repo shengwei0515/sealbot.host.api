@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { TwitchLoginController } from './twitch-login.controller';
+import { TwitchAuthController } from './twitch-auth.controller';
 
 describe('TwitchLoginController', () => {
-  let controller: TwitchLoginController;
+  let controller: TwitchAuthController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [TwitchLoginController],
+      controllers: [TwitchAuthController],
     }).compile();
 
-    controller = module.get<TwitchLoginController>(TwitchLoginController);
+    controller = module.get<TwitchAuthController>(TwitchAuthController);
   });
 
   it('should be defined', () => {
