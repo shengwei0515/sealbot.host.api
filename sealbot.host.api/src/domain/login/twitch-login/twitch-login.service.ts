@@ -1,10 +1,11 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from '@nestjs/config';
 import { TwitchRepository } from '../../../dal/twitch/twitch.repositroy'
-import { GetAuthorizePageUrlViewModel, GetTokenParameter, GetTokenViewModel } from "./twitch-login.model";
+import { GetAuthorizePageUrlViewModel, GetTokenParameter, GetTokenViewModel, RefreshTokenParameter } from "./twitch-login.model";
 import { Observable, map } from "rxjs";
 import * as twitch from '../../../dal/twitch/twitch.content'
 import { randomString } from 'src/core/utils/randomString';
+import { config } from "process";
 
 
 @Injectable()
@@ -40,6 +41,25 @@ export class TwitchLoginService {
         )
 
         return this.twitchRepo.getToken(getTokenMessage).pipe(map(getTokenResponse =>
+            {
+                const getTokenViewModel: GetTokenViewModel = {
+                    accessToken: getTokenResponse.access_token,
+                    refreshToken: getTokenResponse.refresh_token
+                }
+                return getTokenViewModel
+            }
+        ));
+    }
+
+    refreshToken(parameter: RefreshTokenParameter): Observable<GetTokenViewModel> {
+        const refreshTokenPayload: twitch.OauthRefreshTokenMessage = {
+            grant_type: "refresh_token",
+            refresh_token: parameter.refreshToken,
+            client_id: this.config.get('Twitch_Client_Id'),
+            client_secret: this.config.get('Twitch_Client_Secret')
+        }
+        console.log(refreshTokenPayload)
+        return this.twitchRepo.refreshToken(refreshTokenPayload).pipe(map(getTokenResponse =>
             {
                 const getTokenViewModel: GetTokenViewModel = {
                     accessToken: getTokenResponse.access_token,

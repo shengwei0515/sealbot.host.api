@@ -46,3 +46,12 @@ export class GetTokenViewModel {
     @IsString()
     refreshToken: string;
 }
+
+export class RefreshTokenParameter {
+
+    @ApiProperty({
+        description: 'refresh token to get token from twitch'
+    })
+    @IsString()
+    refreshToken: string;
+}

@@ -1,8 +1,11 @@
-import { Controller, Get, HttpStatus, Response} from '@nestjs/common';
-import { ApiTags, ApiResponse } from '@nestjs/swagger';
+import { Controller, Get, HttpStatus, Response, UseGuards} from '@nestjs/common';
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import { TwitchAuthGuard } from 'src/core/authentiaction/twitch-auth/twitch-auth.guard';
 
 @ApiTags('user')
 @Controller('user')
+@ApiBearerAuth('access-token')
+@UseGuards(TwitchAuthGuard)
 export class UserController {
     
     @Get('/info')

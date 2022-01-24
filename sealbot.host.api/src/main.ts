@@ -10,6 +10,16 @@ async function bootstrap() {
     .setTitle('SealBot Host Api')
     .setDescription('')
     .setVersion('1.0')
+    .addBearerAuth(
+      {
+        description: "token for twitch authentication",
+        name: 'Authorization',
+        bearerFormat: 'bearer',
+        type: 'http',
+        in: 'Header'
+      },
+      'access-token'
+    )
     .build()
 
   const document = SwaggerModule.createDocument(app, builder);
